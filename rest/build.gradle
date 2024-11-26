@@ -15,4 +15,11 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-amqp'
     implementation project(':calculator')
+    implementation 'org.springframework.boot:spring-boot-starter-log4j2'
+    implementation 'org.apache.logging.log4j:log4j-web:2.20.0'
+
+    configurations {
+        implementation.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging' 
+        implementation.exclude group: 'org.apache.logging.log4j', module: 'log4j-to-slf4j' 
+    }
 }
