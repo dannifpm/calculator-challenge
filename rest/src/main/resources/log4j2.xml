@@ -1,0 +1,27 @@
+<Configuration status="WARN">
+    <Appenders>
+        <File name="HttpTrafficFile" fileName="http-traffic.log" append="true">
+            <PatternLayout>
+                <Pattern>%d [%X{requestId}] [%thread] %-5level %logger{36} - %msg%n</Pattern>
+            </PatternLayout>
+        </File>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout>
+                <Pattern>%d [%X{requestId}] [%thread] %-5level %logger{36} - %msg%n</Pattern>
+            </PatternLayout>
+        </Console>
+    </Appenders>
+    <Loggers>
+        <Logger name="org.springframework.web" level="info" additivity="false">
+            <AppenderRef ref="HttpTrafficFile" />
+            <AppenderRef ref="Console" />
+        </Logger>
+        <Logger name="org.apache.catalina" level="info" additivity="false">
+            <AppenderRef ref="HttpTrafficFile" />
+        </Logger>
+        <Root level="info">
+            <AppenderRef ref="HttpTrafficFile" />
+            <AppenderRef ref="Console" />
+        </Root>
+    </Loggers>
+</Configuration>
